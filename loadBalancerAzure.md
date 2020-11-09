@@ -89,17 +89,28 @@ az vm availability-set create -g grLoadBalancerTest --name myAvailabilitySet
 ```
 ## Archivos de configuración inicial para máquinas virtuales
 ### Paso 11: Crear un archivo de instalación y configuración de arranque para las máquinas virtuales.
-El archivo de instalación es para que una vez creadas las máquinas virtuales automáticamente se instalen todos los paquetes necesarios para iniciar o trabajar con nuestros desarrollos por ejemplo Instalar un apache, node, etc. 
+El archivo de instalación es para que una vez creadas las máquinas virtuales automáticamente se instalen todos los paquetes necesarios para iniciar o trabajar con nuestros desarrollos por ejemplo Instalar un apache, node, etc.  *OPCIONAL*
 
 ### Paso 12: Crear 3 máquinas virtuales.
 **Linux bash**
 ```b
 for i `seq 1 3`; do
-az vm create -g PlatziBalancer --name myVM$1 --availability-set myAvailabilitySet --nics myNic$1 --image UbuntuLTS --admin-username azureuser --generate-ssh-key --custom-data cloud-init-txt --no-wait
+az vm create -g grLoadBalancerTest --name myVM$1 --availability-set myAvailabilitySet --nics myNic$1 --image UbuntuLTS --admin-username azureuser --generate-ssh-key --custom-data cloud-init-txt --no-wait
 done
 ```
 **PowerShell**
+```b
+foreach ($i in 1..3)
+{ az vm create -g grLoadBalancerTest --name myVM$i --availability-set myAvailabilitySet --nics myNic$i --image UbuntuLTS --size Standard_B1ls --admin-username azadminuser --generate-ssh-key --no-wait }
+```
 
+## Verificación de todo mi entorno de trabajo
+### Paso 13: Obtener la IP del balanceador de cargas. 
+Puedes acceder a ella desde el portal de Azure o la línea de comandos.
+```b
+az network public-ip show -g grLoadBalancerTest --name ipPublic --query [ipAddress] --output tsv
+```
+### Paso 14: Usar la IP del balanceador de cargas para probar que la arquitectura de nuestra aplicación funciona correctamente (Ctrl + R).
 
 ## Documentación 
 - https://docs.microsoft.com/es-es/azure/load-balancer/load-balancer-overview
