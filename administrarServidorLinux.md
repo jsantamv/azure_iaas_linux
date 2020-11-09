@@ -1024,10 +1024,10 @@ sudo su - nodejs
 git clone https://github.com/edisoncast/linux-platzi
 ```
 
-Creación del script /lib/systemd/system/platzi@.service para que el servicio de Node.js arranque con el sistema operativo:
+Creación del script /lib/systemd/system/userName@.service para que el servicio de Node.js arranque con el sistema operativo:
 ```b
 ls -l /lib/systemd/system/ # para validar lo que tenemos servicios que tenemos
-sudo vim /lib/systemd/system/platzi@.service
+sudo vim /lib/systemd/system/userName@.service
 ```
 
 ### Una vez creado el archivo, llenarlo con la siguiente información
@@ -1051,7 +1051,7 @@ WantedBy=multi-user.target
 
 Cambiar el nombre a la carpeta de linux-platzi a server
 Corregir los errores en el archivo de configuración del servicio en 
-/lib/systemd/system/platzi@.service
+/lib/systemd/system/userName@.service
 
 Iniciar el servicio (debemos estar en la carpeta /server/configuracion_servidor/bash)
 ./enable.sh
@@ -1059,7 +1059,7 @@ Iniciar el servicio (debemos estar en la carpeta /server/configuracion_servidor/
 
 Comando para ver los logs
 ```b
-sudo journalctl -fu platzi@.service
+sudo journalctl -fu userName@.service
 ```
 
 Iniciar el servicio de Nginx (Apagar antes Apache si es necesario)
