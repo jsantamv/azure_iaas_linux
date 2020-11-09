@@ -17,5 +17,24 @@
 13. Obtener la Ip del Load Balancer
 14. Probar el balance de cargas 
 
+
+## Aplicacion de los pasos
+### Paso 1: Crear un grupo de recursos
+
+ejemplo de creacion un grupo de recursos
+```b
+az group create --location
+                --name
+                [--managed-by]
+                [--subscription]
+                [--tags]
+```
+Comando aplicado
+```b
+az group create --name grLoadBalancerTest --location eastus
+```
+
 ## Documentación 
 https://docs.microsoft.com/es-es/azure/load-balancer/load-balancer-standard-availability-zones
+https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az_group_create
+
