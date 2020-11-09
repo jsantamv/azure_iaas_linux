@@ -443,43 +443,32 @@ letra v hasta 4 veces (-vvvv) para leer más información.
 
 Las configuraciones de SSH se encuentran en el archivo /etc/ssh/sshd_config.
 
-RESUMEN DE LA CLASE
-|
-Autenticación de clientes y servidores sobre SSH
-|
-|
-SSH: Secure Shell, es un protocolo que permite conectar dos computadoras de forma remota sin necesidad de un password, únicamente con la interacción de una llave pública y una llave privada (aunque podemos colocar una contraseña sobre las llaves)
-|
-|
-Configuración
-|
+### RESUMEN DE LA CLASE
+
+#### Autenticación de clientes y servidores sobre SSH
+**SSH**: Secure Shell, es un protocolo que permite conectar dos computadoras de forma remota sin necesidad de un password, únicamente con la interacción de una llave pública y una llave privada (aunque podemos colocar una contraseña sobre las llaves)
+#### Configuración
 
 En el servidor, abrir el archivo /etc/ssh/sshd_config con algún editor. Leer el archivo y configurar a gusto.
 En la consola de la máquina cliente abrir ssh-keygen para generar las llaves
 Elegir ubicación para guardar la llave privada
 Ejecutar ssh-copy-id -i directorio_de_llave/id_rsa.pub nombre_usuario@direccion_ip_del_servidor para copiar la llave pública al servidor
 Ejecutar ssh nombre_usuario@direccion_ip_del_servidor en la máquina cliente para conectarnos exitosamente de forma remota
-|
-|
-Tips
-|
 
-En lugar de descargar Putty en Windows podemos utilizar el emulador de consola Unix llamado Cmder para ejecutar los comandos vistos en clase. Incluso si esto falla, lo que personalmente recomiendo es instalar un subsistema de linux si tenemos Windows 10. Platzi tiene incluso un artículo sobre como hacer eso: https://platzi.com/clases/1378-python-practico/19200-importante-instalando-ubuntu-bash-en-windows-para-/
+#### Tips
+
+En lugar de descargar Putty en Windows podemos utilizar el emulador de consola Unix llamado Cmder para ejecutar los comandos vistos en clase. Incluso si esto falla, lo que personalmente recomiendo es instalar un subsistema de linux si tenemos Windows 10. Platzi tiene incluso un artículo sobre como hacer eso: 
+https://platzi.com/clases/1378-python-practico/19200-importante-instalando-ubuntu-bash-en-windows-para-/
+
 Si la conexión falla, podemos usar el modificador -v (verbose) en el comando ssh para poder ver la información que envían las máquinas que intentan conectarse. La “v” puede repetirse hasta cuatro veces, quedando el comando, por ejemplo, como: ssh -vvvv nombre_usuario@direccion_ip_del_servidor. A mas “v” pongamos, más información se mostrará
-|
-|
-BONUS
-|
+#### BONUS
 Reto: Restringir el acceso al usuario root por ssh, y permitir solo un usuario determinado conectado
-|
-Solución:
-|
+#### Solución:
 Colocar en el archivo /etc/ssh/sshd_config del servidor las siguientes líneas:
 PermitRootLogin no
 AllowUsers nombre_usuario
 Ejecutar el siguiente comando para reiniciar el servicio de ssh:
 sudo service sshd restart
--
 
 ## ARRANQUE, DETENCIÓN Y RECARGA DE SERVICIOS
 El comando systemctl nos permite manejar los procesos de nuestro sistema 
@@ -496,21 +485,16 @@ sudo systemctl list-units -t service --all: ver todos los servicios del sistema.
 El comando journalctl nos permite ver los logs de los procesos de nuestro 
 sistema operativo. Recuerda que todos ellos están almacenados en la carpeta /var/log/.
 
-sudo journalctl -fu nombre-servicio: ver los logs de nuestros servicios y hacer un seguimiento.
-sudo journalctl --disk-usage: ver la cantidad de espacio que ocupan nuestros logs.
-sudo journalctl --list-boots: ver los logs desde el último arranque del sistema.
-sudo journalctl -p (critic, info, warning, error): filtrar los logs por el tipo de mensaje.
-sudo journalctl -o json: ver los logs en formato JSON.
+- **sudo journalctl -fu nombre-servicio**: ver los logs de nuestros servicios y hacer un seguimiento.
+- **sudo journalctl --disk-usage**: ver la cantidad de espacio que ocupan nuestros logs.
+- **sudo journalctl --list-boots**: ver los logs desde el último arranque del sistema.
+- **sudo journalctl -p (critic, info, warning, error)**: filtrar los logs por el tipo de mensaje.
+- **sudo journalctl -o json**: ver los logs en formato JSON.
 
-
-RESUMEN DE LA CLASE
-|
+### RESUMEN DE LA CLASE
 Arranque, detención y recarga de servicios
-|
-|
 Comandos
-|
-
+```b
 sudo systemctl status servicio: Estado de un servicio
 sudo systemctl enable servicio: Habilita un servicio
 sudo systemctl disable servicio: Deshabilita un servicio
@@ -523,6 +507,7 @@ sudo journalctl --disk-usage: Muestra cuanto pesan los logs en el sistema operat
 sudo journalctl --list-boots: Muestra los booteos de la computadora
 sudo journalctl -p critic|notice|info|warning|error: Muestra mensajes de determinada categoría de nuestros logs
 sudo journalctl -o json: Muestra los logs en formato json
+```
 
 ## INSTALACIÓN Y CONFIGURACIÓN DE NGINX
 1. Veriricar que apache2 no este arriba
@@ -536,6 +521,7 @@ sudo journalctl -o json: Muestra los logs en formato json
 	luego validamos la ruta del 
 
 RESUMEN
+```b
 	sudo apt search nginx
 	sudo apt search "nginx$"
 	sudo apt update && sudo apt install nginx
@@ -556,10 +542,9 @@ RESUMEN
 	curl -I localhost
 	cd /etx/nginx/sites-enabled/
 	ll
--
+```
 ## ¿QUÉ ES NGINX AMPLIFY?
-
-NGINX Amplify es una herramienta SaaS que permite realizar el monitoreo de NGINX y NGINX Plus. 
+**NGINX Amplify** es una herramienta SaaS que permite realizar el monitoreo de NGINX y NGINX Plus. 
 Los factores que permite monitorear son el rendimiento, configuraciones con análisis estático.
  parámetros del sistema operativo, así como PHP-FPM, bases de datos y otros componentes. 
  Nginx Amplify es de fácil configuración y llevar control de nuestros servidores es agradable 
@@ -597,12 +582,12 @@ Continue
 
 Para los que les interese. se puede instalar en Ubuntu 20 de la siguiente manera:
 
-INSTALAR EN UBUNTU 20
-	Después de darle los permisos de ejecución al archivo install.sh de abre con vi o nano
-	se edita la linea que dice “packages_url=” se reemplaza la url de las comillas por esta:
-	https://packages.amplify.nginx.com/py3/
-	Se ejecuta como dice en Nginx Amplify API_KEY=’#####…’ sh ./install.sh
-	Y listo ya con eso!
+### INSTALAR EN UBUNTU 20
+Después de darle los permisos de ejecución al archivo install.sh de abre con vi o nano
+se edita la linea que dice “packages_url=” se reemplaza la url de las comillas por esta:
+https://packages.amplify.nginx.com/py3/
+Se ejecuta como dice en Nginx Amplify API_KEY=’#####…’ sh ./install.sh
+Y listo ya con eso!
 	
  TO START AND STOP THE AMPLIFY AGENT TYPE:
 
@@ -695,7 +680,7 @@ INSTALAR EN UBUNTU 20
 			check_command check_mysql_health!nagios!nagiosplatziS14*!connection-time!127.0.0.1!3306!
 		}
 
-## 		LOS LOGS, NUESTROS MEJORES AMIGOS
+## LOS LOGS, NUESTROS MEJORES AMIGOS
 
 FIND
 Nos ayuda a buscar archivos y/o carpetas en el sistema operativo. 
@@ -796,7 +781,7 @@ y https://www.datadoghq.com/, podemos tener una prueba del servicio y analizar e
 Cabe aclarar que también necesitará algún sistema de alarma automatizado que nos envíe alertas de forma 
 proactiva cuando las cosas no estén funcionando bien.		
 		--
-## 		LAS BASES DE BASH /* LENGUAJE DE PROGRAMACION PARA TAREAS */--		
+## LAS BASES DE BASH /* LENGUAJE DE PROGRAMACION PARA TAREAS */--		
 RESUMEN DE LA CLASE
 |
 Las bases de bash
@@ -815,7 +800,7 @@ Creación de un comentario
 		
 
 --
-## 		LAS VARIABLES Y SU ENTORNO DE EJECUCIÓN--
+## LAS VARIABLES Y SU ENTORNO DE EJECUCIÓN--
 Las variables de entorno son un conjunto de variables globales en nuestros sistemas que
  nos permiten acceder de forma más fácil a una ruta o un conjunto de comandos difíciles 
  de recordar. Podemos usarlas en la terminal y en los archivos de bash.
@@ -869,11 +854,11 @@ df -h | grep /dev/sda2 >> uso_disco_""$FECHA"".txt
 
 echo "Se ha generado un archivo con nombre uso_disco$FECHA.txt en la ubicacion $CWD"
 
-							AUTOMATIZANDO TAREAS DESDE LA TERMINAL
+## AUTOMATIZANDO TAREAS DESDE LA TERMINAL
 
-#Nuestro principal trabajo como administradores de sistemas es automatizar las tareas y procesos de nuestro servidor. 
-#En esta clase vamos a realizar un script que nos permita realizar una copia de seguridad de una base de datos MYSQL.
-
+Nuestro principal trabajo como administradores de sistemas es automatizar las tareas y procesos de nuestro servidor. 
+En esta clase vamos a realizar un script que nos permita realizar una copia de seguridad de una base de datos MYSQL.
+```b
 vi copia_mysql.sh
 
 #!/bin/bash
@@ -941,20 +926,21 @@ function make_backup {
 	echo "$($duration / 60) minutes"
 	aws s3 cp $BAK "s3://$BUCKET" --recursive
 }
+```
 
-## 					CRONTAB /* Para las tareas programadas */
-#Para ejecutar nuestra tarea de copia de seguridad debemos hacer uso de cron, el 
-#cual es un administrador regular de procesos en segundo plano que comprueba si 
-#existen tareas para ejecutar, teniendo en cuenta la hora del sistema.
+## CRONTAB *Para las tareas programadas*
+Para ejecutar nuestra tarea de copia de seguridad debemos hacer uso de cron, el 
+cual es un administrador regular de procesos en segundo plano que comprueba si 
+existen tareas para ejecutar, teniendo en cuenta la hora del sistema.
 
-#Las configuraciones de las tareas a ejecutar se almacenan en el archivo crontab 
-#que puede ser editado con el comando crontab -e, si requerimos listar las tareas 
-#que tenemos configuradas ejecutamos crontab -l.
+Las configuraciones de las tareas a ejecutar se almacenan en el archivo crontab 
+que puede ser editado con el comando crontab -e, si requerimos listar las tareas 
+que tenemos configuradas ejecutamos crontab -l.
 
-#A continuación te muestro lo que se imprime en la pantalla al correr el comando crontab -e
+A continuación te muestro lo que se imprime en la pantalla al correr el comando crontab -e
 
-#Para establecer una tarea automatizada con cron se debe seguir un formato específico 
-#para definir una tarea como se muestra a continuación:
+Para establecer una tarea automatizada con cron se debe seguir un formato específico 
+para definir una tarea como se muestra a continuación:
 
 .--------------- minuto (0-59) 
 |  .------------ hora (0-23)
@@ -964,38 +950,40 @@ function make_backup {
 |  |  |  |  |
 *  *  *  *  *  comando a ejecutar
 
-#Lo siguiente sería definir la periodicidad de nuestro cron, para ello podemos hacer pruebas en el sitio https://crontab.guru. 
-#Nosotros queremos que nuestra copia se ejecute todos los días a las 03:15 de la mañana, 
-#pues es el momento donde menos tráfico tenemos en nuestra base de datos.
+Lo siguiente sería definir la periodicidad de nuestro cron, para ello podemos hacer pruebas en el sitio https://crontab.guru. 
+Nosotros queremos que nuestra copia se ejecute todos los días a las 03:15 de la mañana, 
+pues es el momento donde menos tráfico tenemos en nuestra base de datos.
 
-#RESUMEN DE LA CLASE
-#Crontab
+### RESUMEN DE LA CLASE
+Crontab
 
-#¿Qué es cron?: Es un administrador regular de procesos en segundo plano que comprueba 
-#si existen tareas para ejecutar, teniendo en cuenta la hora del sistema
+¿Qué es cron?: Es un administrador regular de procesos en segundo plano que comprueba 
+si existen tareas para ejecutar, teniendo en cuenta la hora del sistema
 
-#¿Qué es crontab?: Es el archivo de configuraciones de las tareas a ejecutar. 
-#@Con el comando crontab -e se edita, con crontab -l se listan las tareas configuradas
+¿Qué es crontab?: Es el archivo de configuraciones de las tareas a ejecutar. 
+@Con el comando crontab -e se edita, con crontab -l se listan las tareas configuradas
 
-#Formato de cron
+Formato de cron
 
 minute(0-59) hour(0-23) day_of_month(1-31) month(1-12|jan,feb,mar...) day_of_week(0-6|sun,mon,tue...) interpreter(ej:"/usr/bin/bash") command(ej:"pwd > /home/plazi/pwd.txt")
 
 ## 	EL FIREWALL Y SUS REGLAS
-#Los Firewalls son herramientas que monitorean el tráfico de nuestras redes para 
-#identificar amenazas e impedir que afecten nuestro sistema.
+Los Firewalls son herramientas que monitorean el tráfico de nuestras redes para 
+identificar amenazas e impedir que afecten nuestro sistema.
 
-#Recuerda que la seguridad informática es un proceso constante, así que ninguna 
-#herramienta (incluyendo el firewall) puede garantizarnos seguridad absoluta.
+Recuerda que la seguridad informática es un proceso constante, así que ninguna 
+herramienta (incluyendo el firewall) puede garantizarnos seguridad absoluta.
 
-#En Ubuntu Server podemos usar ufw (Uncomplicated Firewall) para crear algunas reglas, 
-#verificar los puertos que tenemos abiertos y realizar una protección básica de nuestro sistema:
+En Ubuntu Server podemos usar ufw (Uncomplicated Firewall) para crear algunas reglas, 
+verificar los puertos que tenemos abiertos y realizar una protección básica de nuestro sistema:
 
+```b
 sudo ufw (enable, reset, status): activar, desactivar o ver el estado y reglas de nuestro firewall.
 sudo ufw allow numero-puerto: permitir el acceso por medio de un puerto específico. Recuerda que el puerto 22 es por donde trabajamos con SSH.
 sudo ufw status numbered: ver el número de nuestras reglas.
 sudo ufw delete numero-regla: borrar alguna de nuestras reglas.
 sudo ufw allow from numero-ip proto tcp to any port numero-puerto: restringir el acceso de un servicio por alguno de sus puertos a solo un número limitado de IPs específicas.
+```
 
 Recomendación
 Abrir al público únicamente el puerto 80 (http), 443 (https). Para un conjunto de IP’s específicas, habilitar el puerto 22 (ssh)
@@ -1003,48 +991,55 @@ Abrir al público únicamente el puerto 80 (http), 443 (https). Para un conjunto
 
 ## 	ESCANEO DE PUERTOS CON NMAP Y NIKTO DESDE KALI LINUX
 RESUMEN DE LA CLASE
-|
 Escaneo de puertos con NMAP y NIKTO desde Kali Linux
-|
-|
 Comandos
-|
 
-nmap -sV -sC -0 -oA nombre_de_archivo dirección_ip_del_servidor: Realiza un mapeo de la red
-nikto -h ip_del_host -o nombre_de_archivo: Escanea vulnerabilidades en un servidor
+- nmap -sV -sC -0 -oA nombre_de_archivo dirección_ip_del_servidor: Realiza un mapeo de la red
+- nikto -h ip_del_host -o nombre_de_archivo: Escanea vulnerabilidades en un servidor
 
-							LYNIS IT PERFORMS AN EXTENSIVE HEALTH SCAN
+## LYNIS IT PERFORMS AN EXTENSIVE HEALTH SCAN
+```b
 sudo lynis audit system
+```
+Lynis is a battle-tested security tool for systems running Linux, macOS, or Unix-based operating system. 
+It performs an extensive health scan of your systems to support system hardening and compliance testing. 
+The project is open source software with the GPL license and available since 2007.
 
-#Lynis is a battle-tested security tool for systems running Linux, macOS, or Unix-based operating system. 
-#It performs an extensive health scan of your systems to support system hardening and compliance testing. 
-#The project is open source software with the GPL license and available since 2007.
+## CONFIGURACIÓN DE NODE.JS EN UN AMBIENTE PRODUCTIVO
+Descarga del repositorio con el proyecto de Node.js:
 
-							CONFIGURACIÓN DE NODE.JS EN UN AMBIENTE PRODUCTIVO
-#Descarga del repositorio con el proyecto de Node.js:
-
-#Instalación de Node.js:
+Instalación de Node.js:
+```b
 sudo apt install nodejs npm
+```
 
-#Descarga e instalación de la versión 10 de Node.js:
+### Descarga e instalación de la versión 10 de Node.js:
+```b
 curl -sL https://deb.nodesource.com/setup_10.x -o node_setup.sh
 sudo bash node_setup.sh
 sudo apt-get install gcc g++ make
 sudo apt-get install -y nodejs
+```
 
 #Creación de un usuario para manejar los procesos de Node.js:
+```b
 sudo adduser nodejs
-# si da error de permisos de usuario https://alexariza.net/tutorial/otorgar-permisos-de-root-a-un-usuario-nuevo-en-linux/
+```
 
+si da error de permisos de usuario ver el siguiente enlace https://alexariza.net/tutorial/otorgar-permisos-de-root-a-un-usuario-nuevo-en-linux/
+```b
 sudo su - nodejs
 git clone https://github.com/edisoncast/linux-platzi
+```
 
-#Creación del script /lib/systemd/system/platzi@.service para que el servicio de Node.js arranque con el sistema operativo:
+Creación del script /lib/systemd/system/platzi@.service para que el servicio de Node.js arranque con el sistema operativo:
+```b
 ls -l /lib/systemd/system/ # para validar lo que tenemos servicios que tenemos
 sudo vim /lib/systemd/system/platzi@.service
+```
 
-# Una vez creado el archivo, llenarlo con la siguiente información
-
+### Una vez creado el archivo, llenarlo con la siguiente información
+```b
 [Unit]
 Description=Balanceo de carga para Platzi
 Documentation=https://github.com/edisoncast/linux-platzi
@@ -1060,31 +1055,37 @@ Restart=on-abort
 
 [Install]
 WantedBy=multi-user.target
+```
 
+Cambiar el nombre a la carpeta de linux-platzi a server
+Corregir los errores en el archivo de configuración del servicio en 
+/lib/systemd/system/platzi@.service
 
-#Cambiar el nombre a la carpeta de linux-platzi a server
-#Corregir los errores en el archivo de configuración del servicio en 
-#/lib/systemd/system/platzi@.service
-
-#Iniciar el servicio (debemos estar en la carpeta /server/configuracion_servidor/bash)
+Iniciar el servicio (debemos estar en la carpeta /server/configuracion_servidor/bash)
 ./enable.sh
 ./start.sh
 
-#Comando para ver los logs
+Comando para ver los logs
+```b
 sudo journalctl -fu platzi@.service
+```
 
-#Iniciar el servicio de Nginx (Apagar antes Apache si es necesario)
+Iniciar el servicio de Nginx (Apagar antes Apache si es necesario)
+```b
 sudo systemctl start nginx
+```
 
-#Una vez en la carpeta /etc/nginx/sites-available/ 
-#eliminar el contenido de la configuración de Nginx
+Una vez en la carpeta */etc/nginx/sites-available/*
+eliminar el contenido de la configuración de Nginx
+```b
 sudo truncate -s0 default
-
-#Editar el archivo de configuración
+```
+Editar el archivo de configuración
+```b
 sudo vim default
-
-# Una vez en el archivo, escribir lo siguiente
-
+```
+Una vez en el archivo, escribir lo siguiente
+```b
 server  {
 	listen 80 default_server;
 	listen [::]:80 default_server;
@@ -1105,12 +1106,16 @@ upstream backend {
 	server 127.0.0.1:3002;
 	server 127.0.0.1:3003;
 }
-
-#Validamos que la configuración establecida fue correcta
+```
+Validamos que la configuración establecida fue correcta
+```b
 sudo nginx -t
-
-#Reiniciamos nginx
+```
+Reiniciamos nginx
+```b
 sudo systemctl restart nginx
-
-#Probamos todo haciendo un curl a localhost
+```
+Probamos todo haciendo un curl a localhost
+```b
 curl localhost
+```
