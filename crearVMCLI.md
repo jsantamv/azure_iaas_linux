@@ -9,7 +9,7 @@ comando
 ```b
 az vm image list.
 ```
-Create a Resource group
+## Create a Resource group
 
 ```b
 az group create --name grp_ubuntusrv --location eastus
@@ -33,7 +33,7 @@ get VM Information with quieres
 az vm show --name ubuntu01 --resource-group grp_ubuntusrv
 ```
 
-Ver documentación
+## Documentación
 - https://docs.microsoft.com/en-us/azure/virtual-machines/windows/overview
 - https://github.com/aminespinoza/ContenidoIaaS/tree/master/AltaDisponibilidad
 
