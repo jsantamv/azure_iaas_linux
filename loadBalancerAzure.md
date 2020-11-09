@@ -1,4 +1,9 @@
 # Load Balancer en Azure
+El equilibrio de carga hace referencia a la distribución uniforme de la carga (el tráfico de red entrante) en un grupo de recursos o servidores de back-end.
+
+Azure Load Balancer opera en la capa cuatro del modelo de interconexión de sistema abierto (OSI). Es el único punto de contacto de los clientes. Load Balancer distribuye flujos de entrada que llegan al front-end del equilibrador de carga a las instancias del grupo de servidores back-end. Estos flujos están de acuerdo con las reglas de equilibrio de carga y los sondeos de estado configurados. Las instancias del grupo de back-end pueden ser instancias de Azure Virtual Machines o de un conjunto de escalado de máquinas virtuales.
+
+- https://docs.microsoft.com/es-es/azure/load-balancer/load-balancer-overview
 
 ## Pasos a seguir para alta disponibilidad en aplicaciones 
 
@@ -71,9 +76,9 @@ az network nsg rule create -g grLoadBalancerTest --nsg-name myNetworkSecurityGro
 ### Paso 9: Crear 3 interfaces de red, una para cada máquina virtual.
 **Linux Bash**
 ```b
-for i in 'seq 1 3'; do az network nic create  -g grLoadBalancerTest --name myNic$1 --vnet-name myVnet --subnet mySubnet --network-security-group myNetworkSecurityGroup -- lb-name myLoadBalancer --lb-address-pools myBackEndPool done
+for i in 'seq 1 3'; do az network nic create  -g grLoadBalancerTest --name myNic$i --vnet-name myVnet --subnet mySubnet --network-security-group myNetworkSecurityGroup -- lb-name myLoadBalancer --lb-address-pools myBackEndPool done
 ```
-**Powershel**
+**Powershell**
 ```b
 foreach ($i in 1..3)
 { az network nic create  -g grLoadBalancerTest --name myNic$i --vnet-name myVnet --subnet mySubnet --network-security-group myNetworkSecurityGroup --lb-name myLoadBalancer --lb-address-pools myBackEndPool }
@@ -82,7 +87,18 @@ foreach ($i in 1..3)
 ```b
 az vm availability-set create -g grLoadBalancerTest --name myAvailabilitySet
 ```
+## Archivos de configuración inicial para máquinas virtuales
+### Paso 11: Crear un archivo de instalación y configuración de arranque para las máquinas virtuales.
+El archivo de instalación es para que una vez creadas las máquinas virtuales automáticamente se instalen todos los paquetes necesarios para iniciar o trabajar con nuestros desarrollos por ejemplo Instalar un apache, node, etc. 
 
+### Paso 12: Crear 3 máquinas virtuales.
+**Linux bash**
+```b
+for i `seq 1 3`; do
+az vm create -g PlatziBalancer --name myVM$1 --availability-set myAvailabilitySet --nics myNic$1 --image UbuntuLTS --admin-username azureuser --generate-ssh-key --custom-data cloud-init-txt --no-wait
+done
+```
+**PowerShell**
 
 
 ## Documentación 
