@@ -807,27 +807,18 @@ Las variables de entorno son un conjunto de variables globales en nuestros siste
 
 El comando env nos permite ver todas las variables de entorno de nuestro sistema.
 RESUMEN DE LA CLASE
-|
 Las variables y su entorno de ejecución
-|
-|
 Comandos
-|
 env: Muestra las variables del sistema operativo
-|
-|
 Variables de entorno
-|
 $PATH: Guarda las rutas donde se ubican los archivos binarios que pueden ejecutarse directamente en la consola
-|
-|
 Scripts útiles
-|
 
 Verificar la cantidad de espacio en el S.O
+```b
 #!/bin/bash
 # Verificar la cantidad de espacio en el S.O
-# Desarrollado por Jhon Edison
+# Desarrollado por User Name
 
 CWD=$(pwd)
 FECHA=$(date +"%F%T")
@@ -853,6 +844,7 @@ df -h | grep /dev > uso_disco_""$FECHA"".txt
 df -h | grep /dev/sda2 >> uso_disco_""$FECHA"".txt
 
 echo "Se ha generado un archivo con nombre uso_disco$FECHA.txt en la ubicacion $CWD"
+```
 
 ## AUTOMATIZANDO TAREAS DESDE LA TERMINAL
 
