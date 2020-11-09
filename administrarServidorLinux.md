@@ -301,11 +301,14 @@ MySQL (recuerda que instalaremos y trabaremos con MySQL en una próxima clase):
 	sudo apt install build-essential libgd-dev openssl libssl-dev unzip apache2 php gcc libdbi-perl libdbd-mysql-perl
 
 Instalación de Nagios:
+```b
 	wget https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.4.4.tar.gz -O nagioscore.tar.gz
-
+```
 Descomprimir y desempaquetar archivos con tar:
-	tar xvzf nagioscore.tar.gz
-	
+```b
+tar xvzf nagioscore.tar.gz
+```
+
 Este comando creará una carpeta nagios-4.4.4. El nombre de la carpeta puede variar 
 dependiendo de la versión que descargaste. Entrando a esta carpeta podemos ejecutar diferentes archivos y comandos para configurar el software y realizar la instalación.
 ```b
@@ -313,7 +316,7 @@ dependiendo de la versión que descargaste. Entrando a esta carpeta podemos ejec
 2. sudo make all
 2. sudo make install
 ```
-Si les da error en el paso de ejecutar “sudo make install”, primero tienen que hacer lo siguiente:
+Si les da error en el paso de ejecutar *sudo make install*, primero tienen que hacer lo siguiente:
 ```b
 sudo make install-groups-users
 sudo usermod -a -G nagios www-data
@@ -331,7 +334,7 @@ https://support.nagios.com/kb/article/nagios-core-installing-nagios-core-from-so
 
 http://172.18.26.138/nagios/ ==> la url
 
-					LOS USUARIOS, UNA TAREA VITAL EN EL PROCESO DE ADMINISTRACIÓN DEL SISTEMA OPERATIVO
+## LOS USUARIOS, UNA TAREA VITAL EN EL PROCESO DE ADMINISTRACIÓN DEL SISTEMA OPERATIVO
 
 El comando id nos muestra el identificador único (uid) de cada usuario en nuestro 
 sistema operativo. El ID 0 está reservado para el usuario root.
@@ -344,68 +347,54 @@ pero están cifradas. Y solo el usuario root tiene permisos de lectura/escritura
 
 Para cambiar la contraseña de nuestros usuarios usamos el comando passwd.
 
-RESUMEN DE LA CLASE
-|
+### RESUMEN DE LA CLASE
+
 Los usuarios, una tarea vital en el proceso de administración del sistema operativo
-|
-|
+
 Comandos
-|
-	id: Muestra el identificador único de mi usuario, del grupo al que pertenezco y los grupos de los cuales formo parte
-	whoami: Muestra que usuario soy
-	passwd: Cambia la contraseña del usuario actual
-|
-|
+- id: Muestra el identificador único de mi usuario, del grupo al que pertenezco y los grupos de los cuales formo parte
+- whoami: Muestra que usuario soy
+- passwd: Cambia la contraseña del usuario actual
+
 Comandos útiles
-|
-	cat /etc/passwd: Muestra todos los usuarios del sistema operativo
-	cat /etc/shadow: Muestra las contraseñas del sistema operativo
+- cat /etc/passwd: Muestra todos los usuarios del sistema operativo
+- cat /etc/shadow: Muestra las contraseñas del sistema operativo
 Por lo general no tenien acceso
-	sudo cat /etc/shadow
+- sudo cat /etc/shadow
 Cambiar un usuario el passwd
-	sudo passwd root
+- sudo passwd root
 	
 
-							COMANDOS PARA ADMINISTRAR CUENTAS DE USUARIOS:
+## COMANDOS PARA ADMINISTRAR CUENTAS DE USUARIOS:
 
-sudo useradd nombre-usuario: crea un usuario sin asignarle inmediatamente alguna contraseña 
-							 ni consultar más información. Debemos terminar de configurar esta cuenta a mano posteriormente.
-							 
-sudo adduser nombre-usuario: crea un nuevo usuario con contraseña y algo más de información. 
-							 También creará una nueva carpeta en la carpeta /home/.
-							 
-userdel nombre-usuario: eliminar cuentas de usuarios.
-
-usermod: modificar la información de alguna cuenta.
-
+- sudo useradd nombre-usuario: crea un usuario sin asignarle inmediatamente alguna contraseña ni consultar más información. Debemos terminar de configurar esta cuenta a mano posteriormente.							 
+- sudo adduser nombre-usuario: crea un nuevo usuario con contraseña y algo más de información. También creará una nueva carpeta en la carpeta /home/.							 
+- userdel nombre-usuario: eliminar cuentas de usuarios.
+- usermod: modificar la información de alguna cuenta.
 Nunca modifiques a mano el archivo /etc/passwd. Para administrar los usuarios debemos usar los comandos que estudiamos en clase.
 
-TRUCO
+### TRUCO
 
 comando llamado:
-	history
+- history
 Este comando nos ayuda ver el historial de comando ejejcutados 
-y con
-	!No de comando : !12
+y con *!No* de comando : *!12*
 
 se vuelve a ejecutar. 
 
-RESUMEN DE LA CLASE
-|
-Entendiendo la membresía de los grupos
-|
-|
-Comandos
-|
-su - usuario: Switch User, cambia de usuario
-groups usuario: Muestra a que grupos pertenece cierto usuario
-sudo gpasswd -a usuario grupo: Agrega un usuario a un grupo
-sudo gpasswd -d usuario grupo: Quita a un usuario de un grupo
-usermod -aG grupo usuario: Agrega un usuario a un grupo
-sudo -l: Muestra que permisos tiene el usuario actual
+### RESUMEN DE LA CLASE
 
-						USANDO PAM PARA EL CONTROL DE ACCESO DE USUARIOS
-PAM es un mecanismo para administrar a los usuarios de nuestro sistema operativo. 
+Entendiendo la membresía de los grupos
+Comandos
+- su - usuario: Switch User, cambia de usuario
+- groups usuario: Muestra a que grupos pertenece cierto usuario
+- sudo gpasswd -a usuario grupo: Agrega un usuario a un grupo
+- sudo gpasswd -d usuario grupo: Quita a un usuario de un grupo
+- usermod -aG grupo usuario: Agrega un usuario a un grupo
+- sudo -l: Muestra que permisos tiene el usuario actual
+
+## USANDO PAM PARA EL CONTROL DE ACCESO DE USUARIOS
+**PAM** es un mecanismo para administrar a los usuarios de nuestro sistema operativo. 
 Nos permite autenticar usuarios, controlar la cantidad de procesos que ejecutan 
 cada uno, verificar la fortaleza de sus contraseñas, ver la hora a la que se 
 conectan por SSH, entre otras.
@@ -418,24 +407,19 @@ El comando ulimit nos ayuda a listar los permisos de nuestros usuarios.
 Para limitar el número de procesos que nuestros usuarios pueden realizar 
 ejecutamos ulimit -u max-numero-procesos.
 
-RESUMEN DE LA CLASE
-|
+### RESUMEN DE LA CLASE
 Usando PAM para el control de acceso de usuarios
-|
-|
 Comandos
-|
-pwscore: Evalúa si una contraseña es buena o mala del 0 al 100
-ulimit: Muestra los permisos que tiene el usuario actual. Modificadores:
+- pwscore: Evalúa si una contraseña es buena o mala del 0 al 100
+- ulimit: Muestra los permisos que tiene el usuario actual. Modificadores:
+- -u numero: Cambia la cantidad de procesos que mi usuario puede ejecutar
 
--u numero: Cambia la cantidad de procesos que mi usuario puede ejecutar
-|
-|
-Comandos útiles
-|
+#### Comandos útiles
+```b
 sudo vi /etc/security/time.conf: Modifica el archivo que indica en que horarios pueden conectarse ciertos usuarios
+```
 
-							AUTENTICACIÓN DE CLIENTES Y SERVIDORES SOBRE SSH
+## AUTENTICACIÓN DE CLIENTES Y SERVIDORES SOBRE SSH
 
 SSH es un protocolo que nos ayuda a conectarnos a nuestros 
 servidores desde nuestras máquinas para administrarlos de 
