@@ -135,9 +135,7 @@ sudo ps auxf | sort -nr -k 3 | head -5: Muestra los 5 procesos que más uso hace
 sudo ps auxf | sort -nr -k 4 | head -5: Muestra los 5 procesos que más uso hacen de la memoria RAM
 ```
 
-------------------------------------------------------------------------------------------------------------------------------------------
-										ANÁLISIS DE LOS PARÁMETROS DE RED
-------------------------------------------------------------------------------------------------------------------------------------------
+## ANÁLISIS DE LOS PARÁMETROS DE RED
 Una IP es un identificador único para los equipos que están conectados a una red.
 
 Las IPs Privadas se utilizan para identificar los dispositivos dentro de una red 
@@ -172,10 +170,8 @@ a algún servidor.
 Comandos útiles
 
 	ip -4 a: Muestra las direcciones IPv4
-	ip -6 a: Muestra las direcciones IPv6
-------------------------------------------------------------------------------------------------------------------------------------------
-									ADMINISTRACIÓN DE PAQUETES ACORDE A LA DISTRIBUCIÓN
-------------------------------------------------------------------------------------------------------------------------------------------
+
+## 	ADMINISTRACIÓN DE PAQUETES ACORDE A LA DISTRIBUCIÓN
 
 Cada distribución de Linux maneja su software de maneras diferentes.
 
@@ -222,9 +218,7 @@ DEBIAN / UBUNTU
 	repositorios apt otra forma de instalar.
 	apt install paquete
 
-------------------------------------------------------------------------------------------------------------------------------------------
 							MANEJO DE PAQUETES EN SISTEMAS BASADOS EN DEBIAN
-------------------------------------------------------------------------------------------------------------------------------------------
 Antes de actualizar el software de nuestro sistema debemos 
 ejecutar el comando sudo apt update para saber qué paquetes 
 pueden actualizarse y desde dónde se realizará la descarga.
@@ -261,9 +255,7 @@ snap search nombre_paquete ==> buscar un paquete.
 snap refresh --list ==> Para ver toda la lista de paquetes.
 snap info nombre_paquete ==> verificar la información de un paquete especifico.
 
-------------------------------------------------------------------------------------------------------------------------------------------
-										ADMINISTRACIÓN DE SOFTWARE CON YUM Y RPM PARA CENTOS
-------------------------------------------------------------------------------------------------------------------------------------------
+## ADMINISTRACIÓN DE SOFTWARE CON YUM Y RPM PARA CENTOS
 
 2.4 Administración de software con YUM y RPM para CentOS
 
@@ -295,9 +287,8 @@ INSTALAR HTOP
 	yum -y install epel-release
 	yum -y update
 	yum -y install htop
-------------------------------------------------------------------------------------------------------------------------------------------	
-						NAGIOS: DESEMPAQUETADO, DESCOMPRESIÓN, COMPILACIÓN E INSTALACIÓN DE PAQUETES
-------------------------------------------------------------------------------------------------------------------------------------------
+
+## NAGIOS: DESEMPAQUETADO, DESCOMPRESIÓN, COMPILACIÓN E INSTALACIÓN DE PAQUETES
 
 No todo el software que necesitamos se encuentra en los repositorios. 
 Debido a esto, algunas veces debemos descargar el software, realizar 
@@ -345,9 +336,7 @@ https://support.nagios.com/kb/article/nagios-core-installing-nagios-core-from-so
 
 http://172.18.26.138/nagios/ ==> la url
 
-------------------------------------------------------------------------------------------------------------------------------------------
 					LOS USUARIOS, UNA TAREA VITAL EN EL PROCESO DE ADMINISTRACIÓN DEL SISTEMA OPERATIVO
-------------------------------------------------------------------------------------------------------------------------------------------
 
 El comando id nos muestra el identificador único (uid) de cada usuario en nuestro 
 sistema operativo. El ID 0 está reservado para el usuario root.
@@ -382,9 +371,7 @@ Cambiar un usuario el passwd
 	sudo passwd root
 	
 
-------------------------------------------------------------------------------------------------------------------------------------------
 							COMANDOS PARA ADMINISTRAR CUENTAS DE USUARIOS:
-------------------------------------------------------------------------------------------------------------------------------------------
 
 sudo useradd nombre-usuario: crea un usuario sin asignarle inmediatamente alguna contraseña 
 							 ni consultar más información. Debemos terminar de configurar esta cuenta a mano posteriormente.
@@ -422,9 +409,7 @@ sudo gpasswd -d usuario grupo: Quita a un usuario de un grupo
 usermod -aG grupo usuario: Agrega un usuario a un grupo
 sudo -l: Muestra que permisos tiene el usuario actual
 
-------------------------------------------------------------------------------------------------------------------------------------------
 						USANDO PAM PARA EL CONTROL DE ACCESO DE USUARIOS
-------------------------------------------------------------------------------------------------------------------------------------------
 PAM es un mecanismo para administrar a los usuarios de nuestro sistema operativo. 
 Nos permite autenticar usuarios, controlar la cantidad de procesos que ejecutan 
 cada uno, verificar la fortaleza de sus contraseñas, ver la hora a la que se 
@@ -455,9 +440,7 @@ Comandos útiles
 |
 sudo vi /etc/security/time.conf: Modifica el archivo que indica en que horarios pueden conectarse ciertos usuarios
 
-------------------------------------------------------------------------------------------------------------------------------------------
 							AUTENTICACIÓN DE CLIENTES Y SERVIDORES SOBRE SSH
-------------------------------------------------------------------------------------------------------------------------------------------
 
 SSH es un protocolo que nos ayuda a conectarnos a nuestros 
 servidores desde nuestras máquinas para administrarlos de 
@@ -518,9 +501,8 @@ AllowUsers nombre_usuario
 Ejecutar el siguiente comando para reiniciar el servicio de ssh:
 sudo service sshd restart
 -
------------------------------------------------------------------------------------------------------------------------------------------
-								ARRANQUE, DETENCIÓN Y RECARGA DE SERVICIOS
-------------------------------------------------------------------------------------------------------------------------------------------
+
+## ARRANQUE, DETENCIÓN Y RECARGA DE SERVICIOS
 El comando systemctl nos permite manejar los procesos de nuestro sistema 
 operativo. Nuestros servicios pueden estar activos (es decir, encendidos) 
 o inactivos (apagados). También podemos configurar si están habilitados 
@@ -563,9 +545,7 @@ sudo journalctl --list-boots: Muestra los booteos de la computadora
 sudo journalctl -p critic|notice|info|warning|error: Muestra mensajes de determinada categoría de nuestros logs
 sudo journalctl -o json: Muestra los logs en formato json
 
-------------------------------------------------------------------------------------------------------------------------------------------
-										INSTALACIÓN Y CONFIGURACIÓN DE NGINX
-------------------------------------------------------------------------------------------------------------------------------------------
+## INSTALACIÓN Y CONFIGURACIÓN DE NGINX
 1. Veriricar que apache2 no este arriba
 	sudo netstat -tulpn
 2. en caso afirmativo bajamos el apache2
@@ -597,9 +577,8 @@ RESUMEN
 	curl -I localhost
 	cd /etx/nginx/sites-enabled/
 	ll
---------------------------------------------------------------------------------------------------------------------------------------------
-										¿QUÉ ES NGINX AMPLIFY?
-------------------------------------------------------------------------------------------------------------------------------------------
+-
+## ¿QUÉ ES NGINX AMPLIFY?
 
 NGINX Amplify es una herramienta SaaS que permite realizar el monitoreo de NGINX y NGINX Plus. 
 Los factores que permite monitorear son el rendimiento, configuraciones con análisis estático.
@@ -650,9 +629,8 @@ INSTALAR EN UBUNTU 20
 
      service amplify-agent { start | stop }
 
---------------------------------------------------------------------------------------------------------------------------------------------
+-
 							MONITOREO DE MYSQL CON NAGIOS
-------------------------------------------------------------------------------------------------------------------------------------------
 	Instalación de MySQL:
 
 		sudo apt install mysql-server
@@ -738,9 +716,7 @@ INSTALAR EN UBUNTU 20
 			check_command check_mysql_health!nagios!nagiosplatziS14*!connection-time!127.0.0.1!3306!
 		}
 
--------------------------------------------------------------------------------------------------------------------------------------	
-												LOS LOGS, NUESTROS MEJORES AMIGOS
--------------------------------------------------------------------------------------------------------------------------------------	
+## 		LOS LOGS, NUESTROS MEJORES AMIGOS
 
 FIND
 Nos ayuda a buscar archivos y/o carpetas en el sistema operativo. 
@@ -749,11 +725,13 @@ sin hacer diferencia entre mayúsculas y minúsculas con -i, por
 fecha de modificación con -mtime, entre otros.
 
 Por ejemplo:
-
+```b
 find /etc -type f
 sudo find /etc -mtime 10
 find /var/log -name "*.log" -type f
 find /var/log -iname "*.LOG" -type f
+```
+
 GREP
 Nos ayuda a filtrar el resultado de un comando o archivo dependiendo de las palabras de cada línea.
 
@@ -799,9 +777,8 @@ sudo find /etc/ -mtime 10 2: Muestra los archivos de configuración que tuvieron
 awk '{print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -nr: Muestra las IP’s que se conectaron con nuestro servidor nginx
 awk '{print $9}' /var/log/nginx/access.log | sort | uniq -c | sort -nr: Muestra los errores que surgieron en nuestro servidor nginx	
 
-----------------------------------------------------------------------------------------------------------------------------------------
-									OTROS SERVICIOS DE LOGS
-----------------------------------------------------------------------------------------------------------------------------------------
+
+## 	OTROS SERVICIOS DE LOGS--
 
 Un servidor puede llegar a registrar millones de líneas de datos en un log. Para facilitar el monitoreo 
 y mantenimiento podemos usar herramientas o tecnologías que nos permitan tomar esta información 
@@ -839,10 +816,8 @@ y https://www.datadoghq.com/, podemos tener una prueba del servicio y analizar e
 
 Cabe aclarar que también necesitará algún sistema de alarma automatizado que nos envíe alertas de forma 
 proactiva cuando las cosas no estén funcionando bien.		
-		
-----------------------------------------------------------------------------------------------------------------------------------------
-												LAS BASES DE BASH /* LENGUAJE DE PROGRAMACION PARA TAREAS */
-----------------------------------------------------------------------------------------------------------------------------------------		
+		--
+## 		LAS BASES DE BASH /* LENGUAJE DE PROGRAMACION PARA TAREAS */--		
 RESUMEN DE LA CLASE
 |
 Las bases de bash
@@ -860,10 +835,8 @@ Creación de un comentario
 	# Comentario cualquiera		
 		
 
-
-----------------------------------------------------------------------------------------------------------------------------------------
-												LAS VARIABLES Y SU ENTORNO DE EJECUCIÓN
-----------------------------------------------------------------------------------------------------------------------------------------
+--
+## 		LAS VARIABLES Y SU ENTORNO DE EJECUCIÓN--
 Las variables de entorno son un conjunto de variables globales en nuestros sistemas que
  nos permiten acceder de forma más fácil a una ruta o un conjunto de comandos difíciles 
  de recordar. Podemos usarlas en la terminal y en los archivos de bash.
@@ -917,9 +890,7 @@ df -h | grep /dev/sda2 >> uso_disco_""$FECHA"".txt
 
 echo "Se ha generado un archivo con nombre uso_disco$FECHA.txt en la ubicacion $CWD"
 
-------------------------------------------------------------------------------------------------------------------------------------------
 							AUTOMATIZANDO TAREAS DESDE LA TERMINAL
-------------------------------------------------------------------------------------------------------------------------------------------
 
 #Nuestro principal trabajo como administradores de sistemas es automatizar las tareas y procesos de nuestro servidor. 
 #En esta clase vamos a realizar un script que nos permita realizar una copia de seguridad de una base de datos MYSQL.
@@ -992,9 +963,7 @@ function make_backup {
 	aws s3 cp $BAK "s3://$BUCKET" --recursive
 }
 
---------------------------------------------------------------------------------------------------------------------------------------
-															CRONTAB /* Para las tareas programadas */
---------------------------------------------------------------------------------------------------------------------------------------
+## 					CRONTAB /* Para las tareas programadas */
 #Para ejecutar nuestra tarea de copia de seguridad debemos hacer uso de cron, el 
 #cual es un administrador regular de procesos en segundo plano que comprueba si 
 #existen tareas para ejecutar, teniendo en cuenta la hora del sistema.
@@ -1033,9 +1002,7 @@ function make_backup {
 
 minute(0-59) hour(0-23) day_of_month(1-31) month(1-12|jan,feb,mar...) day_of_week(0-6|sun,mon,tue...) interpreter(ej:"/usr/bin/bash") command(ej:"pwd > /home/plazi/pwd.txt")
 
---------------------------------------------------------------------------------------------------------------------------------------
-											EL FIREWALL Y SUS REGLAS
---------------------------------------------------------------------------------------------------------------------------------------
+## 	EL FIREWALL Y SUS REGLAS
 #Los Firewalls son herramientas que monitorean el tráfico de nuestras redes para 
 #identificar amenazas e impedir que afecten nuestro sistema.
 
@@ -1054,9 +1021,8 @@ sudo ufw allow from numero-ip proto tcp to any port numero-puerto: restringir el
 Recomendación
 Abrir al público únicamente el puerto 80 (http), 443 (https). Para un conjunto de IP’s específicas, habilitar el puerto 22 (ssh)
 
---------------------------------------------------------------------------------------------------------------------------------------
-									ESCANEO DE PUERTOS CON NMAP Y NIKTO DESDE KALI LINUX
---------------------------------------------------------------------------------------------------------------------------------------
+
+## 	ESCANEO DE PUERTOS CON NMAP Y NIKTO DESDE KALI LINUX
 RESUMEN DE LA CLASE
 |
 Escaneo de puertos con NMAP y NIKTO desde Kali Linux
@@ -1068,18 +1034,14 @@ Comandos
 nmap -sV -sC -0 -oA nombre_de_archivo dirección_ip_del_servidor: Realiza un mapeo de la red
 nikto -h ip_del_host -o nombre_de_archivo: Escanea vulnerabilidades en un servidor
 
---------------------------------------------------------------------------------------------------------------------------------------
 							LYNIS IT PERFORMS AN EXTENSIVE HEALTH SCAN
---------------------------------------------------------------------------------------------------------------------------------------
 sudo lynis audit system
 
 #Lynis is a battle-tested security tool for systems running Linux, macOS, or Unix-based operating system. 
 #It performs an extensive health scan of your systems to support system hardening and compliance testing. 
 #The project is open source software with the GPL license and available since 2007.
 
---------------------------------------------------------------------------------------------------------------------------------------
 							CONFIGURACIÓN DE NODE.JS EN UN AMBIENTE PRODUCTIVO
---------------------------------------------------------------------------------------------------------------------------------------
 #Descarga del repositorio con el proyecto de Node.js:
 
 #Instalación de Node.js:
