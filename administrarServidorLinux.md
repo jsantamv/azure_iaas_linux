@@ -218,7 +218,7 @@ DEBIAN / UBUNTU
 	repositorios apt otra forma de instalar.
 	apt install paquete
 
-							MANEJO DE PAQUETES EN SISTEMAS BASADOS EN DEBIAN
+## MANEJO DE PAQUETES EN SISTEMAS BASADOS EN DEBIAN
 Antes de actualizar el software de nuestro sistema debemos 
 ejecutar el comando sudo apt update para saber qué paquetes 
 pueden actualizarse y desde dónde se realizará la descarga.
@@ -308,26 +308,21 @@ Descomprimir y desempaquetar archivos con tar:
 	
 Este comando creará una carpeta nagios-4.4.4. El nombre de la carpeta puede variar 
 dependiendo de la versión que descargaste. Entrando a esta carpeta podemos ejecutar diferentes archivos y comandos para configurar el software y realizar la instalación.
+```b
+1. sudo ./configure --with-https-conf=/etc/apache2/sites-enabled
+2. sudo make all
+2. sudo make install
+```
+Si les da error en el paso de ejecutar “sudo make install”, primero tienen que hacer lo siguiente:
+```b
+sudo make install-groups-users
+sudo usermod -a -G nagios www-data
 
-# 1:
-	sudo ./configure --with-https-conf=/etc/apache2/sites-enabled
-# 2:	
-	sudo make all
-# 3:
-	sudo make install
-	
-	Si les da error en el paso de ejecutar “sudo make install”, primero tienen que hacer lo siguiente:
-	sudo make install-groups-users
-	sudo usermod -a -G nagios www-data
-# 4:
-	sudo make install-init
-# 5:
-	sudo make install-commandmode
-# 6:
-	sudo make install-config
-#7:
-	sudo make install-webconf
-
+4. sudo make install-init
+5. sudo make install-commandmode
+6. sudo make install-config
+7. sudo make install-webconf
+```
 Por último, para administrar el servicio de nagios podemos usar el comando 
 	sudo systemctl (status, start, restart, reload, stop, enable, disable, list-dependencies) nagios.
 	
@@ -630,7 +625,7 @@ INSTALAR EN UBUNTU 20
      service amplify-agent { start | stop }
 
 -
-							MONITOREO DE MYSQL CON NAGIOS
+## MONITOREO DE MYSQL CON NAGIOS
 	Instalación de MySQL:
 
 		sudo apt install mysql-server
