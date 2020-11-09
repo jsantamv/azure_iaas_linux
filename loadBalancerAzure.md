@@ -67,6 +67,21 @@ az network nsg create -g grLoadBalancerTest -n myNetworkSecurityGroup
 ```b
 az network nsg rule create -g grLoadBalancerTest --nsg-name myNetworkSecurityGroup --name myNetworkSecurityGroupRule --priority 1001 --protocol tcp --destination-port-range 80
 ```
+## Crear un conjunto de disponibilidad
+### Paso 9: Crear 3 interfaces de red, una para cada máquina virtual.
+**Linux Bash**
+```b
+for i in 'seq 1 3'; do az network nic create  -g grLoadBalancerTest --name myNic$1 --vnet-name myVnet --subnet mySubnet --network-security-group myNetworkSecurityGroup -- lb-name myLoadBalancer --lb-address-pools myBackEndPool done
+```
+**Powershel**
+```b
+foreach ($i in 1..3)
+{ az network nic create  -g grLoadBalancerTest --name myNic$i --vnet-name myVnet --subnet mySubnet --network-security-group myNetworkSecurityGroup --lb-name myLoadBalancer --lb-address-pools myBackEndPool }
+```
+### Paso 10: Crear un conjunto de disponibilidad.
+```b
+az vm availability-set create -g grLoadBalancerTest --name myAvailabilitySet
+```
 
 
 
@@ -74,6 +89,7 @@ az network nsg rule create -g grLoadBalancerTest --nsg-name myNetworkSecurityGro
 - https://docs.microsoft.com/es-es/azure/load-balancer/load-balancer-overview
 - https://docs.microsoft.com/es-es/azure/load-balancer/load-balancer-standard-availability-zones
 - **az group create**: https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az_group_create
+- **ForEach in Powershell**: https://ss64.com/ps/foreach.html
 
 
 
