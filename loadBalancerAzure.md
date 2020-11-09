@@ -35,6 +35,7 @@ az group create --name grLoadBalancerTest --location eastus
 ```
 
 ## Documentación 
-https://docs.microsoft.com/es-es/azure/load-balancer/load-balancer-standard-availability-zones
-https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az_group_create
+- https://docs.microsoft.com/es-es/azure/load-balancer/load-balancer-standard-availability-zones
+- **az group create**: https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az_group_create
+
 
