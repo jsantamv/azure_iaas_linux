@@ -1,4 +1,4 @@
-#			Crear una Máquina Virtual desde CLI
+#			Crear una Máquina Virtual desde CLI en Azure
 Recuerda que usar el mismo grupo de recursos es indispensable para conectar 
 nuestras máquinas virtuales a un balanceador de cargas. Si por error creaste 
 dos grupos diferentes, lo mejor es que elimines la nueva máquina virtual y 
@@ -15,7 +15,8 @@ Create a Resource group
 az group create --name grp_ubuntusrv --location eastus
 ```
 
-# Create a Virtual Machine
+## Create a Virtual Machine
+Se debe de utilizar el siguiente comando, claro esta es un ejemplo.
 ```b
 az vm create -n ubuntu01 -g grp_ubuntusrv --image UbuntuLTS --size Standard_B1ls --authentication-type password --admin-username userName --location eastus --generate-ssh-keys --output json --verbose 
 az vm create -n ubuntu02 -g grp_ubuntusrv --image UbuntuLTS --size Standard_B1ls --authentication-type password --admin-username userName --location eastus --generate-ssh-keys --output json --verbose 
@@ -33,6 +34,7 @@ az vm show --name ubuntu01 --resource-group grp_ubuntusrv
 ```
 
 Ver documentación
-https://github.com/aminespinoza/ContenidoIaaS/tree/master/AltaDisponibilidad
+- https://docs.microsoft.com/en-us/azure/virtual-machines/windows/overview
+- https://github.com/aminespinoza/ContenidoIaaS/tree/master/AltaDisponibilidad
 
 
