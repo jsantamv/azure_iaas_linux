@@ -95,7 +95,7 @@ El archivo de instalación es para que una vez creadas las máquinas virtuales a
 **Linux bash**
 ```b
 for i `seq 1 3`; do
-az vm create -g grLoadBalancerTest --name myVM$1 --availability-set myAvailabilitySet --nics myNic$1 --image UbuntuLTS --admin-username azureuser --generate-ssh-key --custom-data cloud-init-txt --no-wait
+az vm create -g grLoadBalancerTest --name myVM$i --availability-set myAvailabilitySet --nics myNic$i --image UbuntuLTS --admin-username azureuser --generate-ssh-key --custom-data cloud-init-txt --no-wait
 done
 ```
 **PowerShell**
