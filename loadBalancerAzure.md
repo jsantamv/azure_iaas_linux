@@ -90,12 +90,55 @@ az vm availability-set create -g grLoadBalancerTest --name myAvailabilitySet
 ## Archivos de configuración inicial para máquinas virtuales
 ### Paso 11: Crear un archivo de instalación y configuración de arranque para las máquinas virtuales.
 El archivo de instalación es para que una vez creadas las máquinas virtuales automáticamente se instalen todos los paquetes necesarios para iniciar o trabajar con nuestros desarrollos por ejemplo Instalar un apache, node, etc.  *OPCIONAL*
+#### Example 
+Guardar en donde se ejecute los comandos, y el nombre por ejemplo puede ser **incializar_nginx.txt** este nombre se debe de colocar dentro de los paramotros de la creacion de la maquina virtual. 
+```b
+#cloud-config
+package_upgrade: true
+packages:
+  - nginx
+  - nodejs
+  - npm
+write_files:
+  - owner: www-data:www-data
+  - path: /etc/nginx/sites-available/default
+    content: |
+      server {
+        listen 80;
+        location / {
+          proxy_pass http://localhost:3000;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection keep-alive;
+          proxy_set_header Host $host;
+          proxy_cache_bypass $http_upgrade;
+        }
+      }
+  - owner: azureuser:azureuser
+  - path: /home/azureuser/myapp/index.js
+    content: |
+      var express = require('express')
+      var app = express()
+      var os = require('os');
+      app.get('/', function (req, res) {
+        res.send('Hello World from host ' + os.hostname() + '!')
+      })
+      app.listen(3000, function () {
+        console.log('Hello world app listening on port 3000!')
+      })
+runcmd:
+  - service nginx restart
+  - cd "/home/azureuser/myapp"
+  - npm init
+  - npm install express -y
+  - nodejs index.js
+```
 
 ### Paso 12: Crear 3 máquinas virtuales.
 **Linux bash**
 ```b
 for i `seq 1 3`; do
-az vm create -g grLoadBalancerTest --name myVM$i --availability-set myAvailabilitySet --nics myNic$i --image UbuntuLTS --admin-username azureuser --generate-ssh-key --custom-data cloud-init-txt --no-wait
+az vm create -g grLoadBalancerTest --name myVM$i --availability-set myAvailabilitySet --nics myNic$i --image UbuntuLTS --admin-username azureuser --generate-ssh-key --custom-data incializar_nginx.txt --no-wait
 done
 ```
 **PowerShell**
