@@ -91,7 +91,7 @@ az vm availability-set create -g grLoadBalancerTest --name myAvailabilitySet
 ### Paso 11: Crear un archivo de instalación y configuración de arranque para las máquinas virtuales.
 El archivo de instalación es para que una vez creadas las máquinas virtuales automáticamente se instalen todos los paquetes necesarios para iniciar o trabajar con nuestros desarrollos por ejemplo Instalar un apache, node, etc.  *OPCIONAL*
 #### Example 
-Guardar en donde se ejecute los comandos, y el nombre por ejemplo puede ser **incializar_nginx.txt** este nombre se debe de colocar dentro de los parametros de la creacion de la maquina virtual. 
+Guardar en donde se ejecute los comandos, y el nombre por ejemplo puede ser **incializar_nginx.txt** este nombre se debe de colocar dentro de los parametros de la creacion de la maquina virtual. El archivo es en formato de **yaml**
 ```b
 #cloud-config
 package_upgrade: true
