@@ -298,7 +298,10 @@ la herramienta.
 Instalación de algunas herramientas para manejar una base de datos 
 
 MySQL (recuerda que instalaremos y trabaremos con MySQL en una próxima clase):
-	sudo apt install build-essential libgd-dev openssl libssl-dev unzip apache2 php gcc libdbi-perl libdbd-mysql-perl
+
+```
+sudo apt install build-essential libgd-dev openssl libssl-dev unzip apache2 php gcc libdbi-perl libdbd-mysql-perl
+```
 
 Instalación de Nagios:
 ```b
